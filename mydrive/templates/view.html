@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DriVe | MyDrive</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100 min-h-screen flex flex-col">
+
+  <!-- Navbar -->
+  <nav class="w-full h-20 bg-gradient-to-r from-blue-500 to-indigo-600 flex items-center px-8 shadow-md">
+    <div class="flex-1 flex justify-center items-center">
+      <h1 class="text-white text-3xl font-bold tracking-wide">DriVe</h1>
+    </div>
+    <div class="flex-3 flex justify-evenly items-center">
+      <a href="../" class="text-white text-lg font-medium hover:text-yellow-200 transition">HOME</a>
+      <a href="#" class="text-yellow-300 text-lg font-medium">MYDRIVE</a>
+      <a href="../upload/" class="text-white text-lg font-medium hover:text-yellow-200 transition">UPLOAD</a>
+    </div>
+  </nav>
+
+  <!-- Header Controls -->
+  <div class="w-full flex justify-center bg-white shadow-sm">
+    <div class="w-4/5 h-20 border-b border-gray-200 flex items-center justify-between px-8">
+      <h1 class="text-2xl font-bold text-gray-700 font-serif">Your Files</h1>
+      <div class="flex space-x-8">
+        <a href="#" class="text-lg font-semibold text-red-500 hover:text-red-700 transition">Delete</a>
+        <a id="toggleSelectLink" href="#" class="text-lg font-semibold text-blue-600 hover:text-blue-800 transition">Select</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Gallery Grid -->
+  <div class="w-full bg-white py-12 flex-1">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div id="gallery" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+        {% for i in file %}
+        <div class="relative group overflow-hidden rounded-2xl shadow-lg bg-gradient-to-b from-white to-blue-50 hover:shadow-xl transition">
+          <input
+            type="checkbox"
+            name="selected_images"
+            class="absolute top-3 left-3 h-5 w-5 accent-blue-600 bg-white border border-gray-300 rounded hidden group-hover:block"
+          />
+          <a href="{{ i.file.url }}" target="_blank" class="block">
+            <img src="{{ i.file.url }}" alt="{{ i.title }}" id="img"
+                 class="w-full h-48 object-cover transition-transform duration-300 ease-in-out" />
+          </a>
+          <div class="p-4">
+            <a href="{{ i.file.url }}" target="_blank"
+               class="text-lg font-semibold text-blue-600 hover:underline block truncate">
+              {{ i.title }}
+            </a>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-6 text-center mt-auto">
+    <p class="text-sm">&copy; 2025 DriVe Vault — All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Checkbox toggle visibility
+    document.getElementById('toggleSelectLink').addEventListener('click', function (event) {
+      event.preventDefault();
+      const checkboxes = document.querySelectorAll('#gallery input[type="checkbox"]');
+      checkboxes.forEach(cb => {
+        if (cb.style.display === 'none' || cb.style.display === '') {
+          cb.style.display = 'block';
+           
+        } else {
+          cb.style.display = 'none';
+          cb.checked = false;
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

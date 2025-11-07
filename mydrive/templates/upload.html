@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Upload | DriVe</title>
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&"
+  />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-blue-500 via-indigo-500 to-purple-500 flex flex-col">
+
+  <!-- Navbar -->
+  <nav class="w-full h-20 bg-white/10 backdrop-blur-md shadow-lg flex items-center px-8">
+    <div class="flex-1 flex justify-center items-center">
+      <h1 class="text-white text-3xl font-bold">DriVe</h1>
+    </div>
+    <div class="flex-3 flex justify-evenly items-center text-white font-medium">
+      <a href="../" class="hover:underline hover:text-yellow-200">HOME</a>
+      <a href="../viewall/" class="hover:underline hover:text-yellow-200">MYDRIVE</a>
+      <a href="#" class="text-yellow-300 font-semibold underline">UPLOAD</a>
+    </div>
+    <div class="flex-1 flex justify-end items-center gap-3 text-white">
+      <span class="material-symbols-outlined text-white">how_to_reg</span>
+      <a href="../logout/" class="hover:underline">LOGOUT</a>
+    </div>
+  </nav>
+
+  <!-- Upload Card -->
+  <div class="flex flex-1 justify-center items-center px-4">
+    <div class="w-full max-w-md bg-white rounded-3xl shadow-2xl p-8 text-center">
+      <h1 class="text-3xl font-bold text-blue-600 mb-8">UPLOAD HERE</h1>
+
+      <form
+        action="../upload/"
+        method="post"
+        enctype="multipart/form-data"
+        class="flex flex-col gap-6 items-center"
+      >
+        {% csrf_token %}
+        <input
+          type="text"
+          name="title"
+          placeholder="TITLE"
+          required
+          class="w-72 h-12 border border-gray-300 rounded-lg text-center focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+        />
+        <input
+          type="file"
+          name="doc"
+          required
+          class="w-72 h-12 border border-gray-300 rounded-lg text-center file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-blue-100 file:text-blue-700 hover:file:bg-blue-200 focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+        />
+        <input
+          type="submit"
+          value="UPLOAD"
+          class="w-72 h-12 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-lg hover:from-indigo-700 hover:to-blue-700 transition-all duration-200"
+        />
+      </form>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="text-center py-4 text-white/80 text-sm">
+    © 2025 DriVe. All rights reserved.
+  </footer>
+
+</body>
+</html>
